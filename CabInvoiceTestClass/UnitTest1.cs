@@ -115,7 +115,7 @@ namespace CabInvoiceTestClass
         {
             //Creating invoice of Invoice Generator:
             invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
-            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1)};
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
 
             //Calculating fare:
             InvoiceSummary actualFare = invoiceGenerator.CalculateFare(rides);
@@ -147,16 +147,17 @@ namespace CabInvoiceTestClass
             Assert.AreEqual(summary, invoiceSummary);
         }
         /// <summary>
-        /// Test method to check invoice summary of particular user.
+        /// Test method to check invoice summary of particular user,with 0 rides.
         /// </summary>
         [Test]
-        public void GIVEN_USER_ID_SHOULD_RETURN_INVOICE_SUMMAR()
+        public void GIVEN_USER_WITH_NULL_RIDES_RETURNS_EXCEPTION()
         {
             //Creating invoice of Invoice Generator:
             invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
             //Declaring UserID
             string userID = "Tejas";
-            Ride[] rides = {  };
+            //Null Rides
+            Ride[] rides = { };
 
             //Add rides for user ID:
             invoiceGenerator.AddRides(userID, rides);
@@ -171,13 +172,31 @@ namespace CabInvoiceTestClass
                 //Asserting values:
                 Assert.AreEqual(expected, Exception);
             }
-
-            
         }
+        /// <summary>
+        /// Test Case to return Total Fare for Premium Ride
+        /// </summary>
+        [Test]
+        public void GIVEN_DISTANCE_AND_TIME_SHOULD_RETURN_TOTAL_FARE_FOR_PREMIUM()
+        {
+            //Creating Instance of invoice Generator:
+            invoiceGenerator = new InvoiceGenerator(RideType.PREMIUM);
+            double distance = 2.0;
+            int time = 5;
 
+            //Calculation of fare:
+            double fare = invoiceGenerator.CalculateFare(distance, time);
+            double expected = 40.0;
 
-
-
-
+            Assert.AreEqual(expected, fare);
+        }
     }
 }
+       
+
+
+
+
+
+
+ 
