@@ -146,9 +146,37 @@ namespace CabInvoiceTestClass
             //Assert values:
             Assert.AreEqual(summary, invoiceSummary);
         }
-         
+        /// <summary>
+        /// Test method to check invoice summary of particular user.
+        /// </summary>
+        [Test]
+        public void GIVEN_USER_ID_SHOULD_RETURN_INVOICE_SUMMAR()
+        {
+            //Creating invoice of Invoice Generator:
+            invoiceGenerator = new InvoiceGenerator(RideType.NORMAL);
+            //Declaring UserID
+            string userID = "Tejas";
+            Ride[] rides = {  };
+
+            //Add rides for user ID:
+            invoiceGenerator.AddRides(userID, rides);
+            string expected = "Rides Are Null";
+            try
+            {
+                //Calculate Ride Fare:
+                InvoiceSummary actualFare = invoiceGenerator.CalculateFare(rides);
+            }
+            catch (CabInvoiceException Exception)
+            {
+                //Asserting values:
+                Assert.AreEqual(expected, Exception);
+            }
+
             
-        
+        }
+
+
+
 
 
     }
