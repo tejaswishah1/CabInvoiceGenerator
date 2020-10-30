@@ -91,6 +91,7 @@ namespace CabInvoiceGenerator
         public InvoiceSummary CalculateFare(Ride[] rides) //Array to store multiple rides.
         {
             double totalFare = 0;
+            
             try
             {
                 //Calculating Total Fare For All Rides.
